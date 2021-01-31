@@ -1167,15 +1167,6 @@ public class ventas_admin extends javax.swing.JFrame {
            
        }
     }//GEN-LAST:event_borrarActionPerformed
-    
-   
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ventas_admin().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Ciudad;

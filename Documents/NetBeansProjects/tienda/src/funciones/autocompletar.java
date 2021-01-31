@@ -7,10 +7,7 @@ import static administrador.actualizacion_empleados.id2;
 import static administrador.actualizacion_empleados.ini;
 import baseDatos.conexionMYSQL;
 import com.toedter.calendar.JDateChooser;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,6 +26,8 @@ import static administrador.menu_registro_actualizaciones.nombre_actu;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
@@ -38,6 +37,7 @@ public class autocompletar {
         Connection cn=mysql.Conectar();
 	PreparedStatement ps=null;
 	ResultSet rs=null;
+        
         public static String idl="",nombrecli="",apellidocli="",direccion="",documento="",telefono1="",ciudad="",doumento_emple="",nombreemple="",apellidoemple=""
         ,cod_producto1="",nombre_producto="",precio1="",ns1="",ns2="",ns3="",ns4="",ns5="",ns6="",ns7="",ns8="",ns9="",ns10="",
                 ns11="",ns12="",ns13="",ns14="",ns15="",ns16="",ns17="",ns18="",ns19="",existencias1="",dia=""
@@ -67,7 +67,13 @@ public class autocompletar {
         catch (SQLException ex) 
         {
          JOptionPane.showMessageDialog(null,"No se encontro ningun resultado");
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
        }
     
     public void autocompletarempleado(JTextField buscar,JTable result){
@@ -94,7 +100,13 @@ public class autocompletar {
         catch (SQLException ex) 
         {
          JOptionPane.showMessageDialog(null,"No se encontro ningun resultado");
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
        }
     public void autocompletarproductos(JTextField buscar,JTable result){
          
@@ -121,7 +133,13 @@ public class autocompletar {
         catch (SQLException ex) 
         {
          JOptionPane.showMessageDialog(null,"No se encontro ningun resultado");
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
     }
     public void autocompletar_cambios_empleados(ActionEvent e,JButton siguiente,JDateChooser desde,JDateChooser hasta,JRadioButton act,JRadioButton bor,JLabel usuario,JLabel observacion1) throws SQLException {   
       String de,fu,cambio="",obser="",query="",usu="";
@@ -319,7 +337,13 @@ public class autocompletar {
               }
         }catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
         }
         
     
@@ -340,7 +364,13 @@ public class autocompletar {
               }
         }catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
     }
     public void completar_usuario_empleado(JTextField usuario_actual,JTextField clave_actual){
         if(emple.equals("")){
@@ -358,7 +388,13 @@ public class autocompletar {
                }
         }catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
         usuario_actual.setText(usu);
         clave_actual.setText(con);
     }}
@@ -414,7 +450,13 @@ public class autocompletar {
         catch (SQLException e) 
         {
          JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
              
         n_empleado.setText(ns1);
         vendedor.setText(ns4);
@@ -478,13 +520,13 @@ public class autocompletar {
         SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat format1=new SimpleDateFormat("EEEE  dd MMMMM YYYY");
         String nuevo;
-        Date dia=null;
+        Date dia1=null;
         try{
-        dia=format.parse(ns2);    
+        dia1=format.parse(ns2);    
         }catch(ParseException ParseException){
             
         }
-        nuevo=format1.format(dia);
+        nuevo=format1.format(dia1);
              
              n_factura1.setText("77777"+ns1);
              n_fecha1.setText(nuevo);
@@ -510,7 +552,13 @@ public class autocompletar {
         catch (SQLException e) 
         {
          JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
         
     }
     public void enviar_a_excel(){
@@ -544,7 +592,13 @@ public class autocompletar {
         catch (SQLException e) 
         {
          JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
         
     }
     public void enviar_historial_productos(JTextField cod_producto,JTextField nombre,JTextField talla,JTextField precio,
@@ -574,7 +628,13 @@ public class autocompletar {
         catch (SQLException e) 
         {
          JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
      cod_producto.setText(cod);
      nombre.setText(n_producto);
      talla.setText(tallas);
@@ -609,7 +669,13 @@ public class autocompletar {
         catch (SQLException ex) 
         {
          JOptionPane.showMessageDialog(null,"No se encontro ningun resultado");
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
 }
     public void buscar_venta2(JTable result,JTextField buscar,JComboBox categoria,JDateChooser desde,JDateChooser hasta){
       String r1,r2,r3,r4,fu;
@@ -637,10 +703,15 @@ public class autocompletar {
               
              result.setModel(modelo);   
 	}  
-        catch (SQLException ex) 
-        {
+        catch (SQLException ex) {
          JOptionPane.showMessageDialog(null,"No se encontro ningun resultado");
-        }}
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }}
     public void buscar_historial_producto(JTable result,JTextField buscar,JComboBox categoria,JDateChooser desde,JDateChooser hasta){
       String r1,fu,r2,r3,r4;
       r1=buscar.getText();
@@ -669,7 +740,13 @@ public class autocompletar {
         catch (SQLException ex) 
         {
          JOptionPane.showMessageDialog(null,"No se encontro ningun resultado");
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
         
     }
     public void buscar_usuario_empleado(JTable result,JTextField buscar){
@@ -693,7 +770,13 @@ public class autocompletar {
         catch (SQLException ex) 
         {
          JOptionPane.showMessageDialog(null,"No se encontro ningun resultado");
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
         
     }
     public void enviar_empleado_admin(JTable result,JComboBox tipo_documento,JTextField documento,JTextField nombres,JTextField apellidos,
@@ -720,7 +803,13 @@ public class autocompletar {
         catch (SQLException e) 
         {
          JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
              
         tipo_documento.setSelectedItem(ns1);
         documento.setText(ns2);

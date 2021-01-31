@@ -9,9 +9,7 @@ import static administrador.ventas_admin.observacion;
 import static administrador.ventas_admin.devolver_p;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
-import java.sql.PreparedStatement;
 import javax.swing.*;
-import javax.swing.JOptionPane;
 import baseDatos.conexionMYSQL;
 import com.toedter.calendar.JDateChooser;
 import static funciones.autocompletar.dia;
@@ -19,6 +17,8 @@ import static funciones.autocompletar.existencias1;
 import java.awt.HeadlessException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static tienda.factura.fact1;
 import static tienda.login.texto;
 import static tienda.ventas.fact;
@@ -56,7 +56,11 @@ public class metodos {
         catch (SQLException ex) 
         {
          JOptionPane.showMessageDialog(null,"No se encontro ningun resultado");
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
         
   }}
    public void mostrar_producto_historial(JTable result)
@@ -65,7 +69,7 @@ public class metodos {
           
       }else{
         try {
-		String query="SELECT * FROM `productos` WHERE `cod_nit`='"+fact1+"'";
+		String query="SELECT * FROM `productos` WHERE `cod_nit`='"+ID+"'";
 		ps=cn.prepareStatement(query);
 		rs=ps.executeQuery();
                 modelo.setRowCount(0);
@@ -83,7 +87,11 @@ public class metodos {
         catch (SQLException ex) 
         {
          JOptionPane.showMessageDialog(null,"No se encontro ningun resultado");
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
         
   }}
    
@@ -108,11 +116,15 @@ public class metodos {
         catch (SQLException ex) 
         {
          JOptionPane.showMessageDialog(null,"No se encontro ningun resultado");
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
    }
    public void mostrar_productos(JTable result){
 		try {
-		String query="SELECT * FROM `productos` ORDER BY `cod_nit` DESC LIMIT 1";
+		String query="SELECT * FROM `productos` ORDER BY 'cod_nit' DESC LIMIT 1";
 		ps=cn.prepareStatement(query);
 		rs=ps.executeQuery();
                 modelo.setRowCount(0);
@@ -130,7 +142,11 @@ public class metodos {
         catch (SQLException ex) 
         {
          JOptionPane.showMessageDialog(null,"No se encontro ningun resultado");
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
    }
    public void mostrar_empleados(JTable result){
        try {
@@ -152,7 +168,11 @@ public class metodos {
         catch (SQLException ex) 
         {
          JOptionPane.showMessageDialog(null,"No se encontro ningun resultado");
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
    }
    public void mostrar_empleados_actualizar(JTable result){
       if(fact1.equals("")){
@@ -177,7 +197,11 @@ public class metodos {
         catch (SQLException ex) 
         {
          JOptionPane.showMessageDialog(null,"No se encontro ningun resultado");
-        }  
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }  
       } 
        
    }
@@ -201,7 +225,11 @@ public class metodos {
         catch (SQLException ex) 
         {
          JOptionPane.showMessageDialog(null,"No se encontro ningun resultado");
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
    }
    
    public void ingresar(JTextField n_empleado,JTextField vendedor,JTextField N_documento,JTextField Ciudad,
@@ -273,7 +301,11 @@ public class metodos {
     }catch(SQLException ex){
         JOptionPane.showMessageDialog(null,ex);
         JOptionPane.showMessageDialog(null,"No ha ingresado informacion o faltan campos por completar");
-    }
+    }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
         
         
 }
@@ -341,7 +373,6 @@ public class metodos {
          
      }
     }catch(SQLException ex){
-        JOptionPane.showMessageDialog(null,ex);
         JOptionPane.showMessageDialog(null,"No ha ingresado informacion o faltan campos por completar");
     }
    }
@@ -364,9 +395,12 @@ public class metodos {
          
      }
     }catch(SQLException ex){
-        JOptionPane.showMessageDialog(null,ex);
         JOptionPane.showMessageDialog(null,"No ha ingresado informacion o faltan campos por completar");
-    }
+    }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
    }
     
     public void ingresar_observacion_empleados(){
@@ -390,7 +424,11 @@ public class metodos {
     }catch(SQLException ex){
         JOptionPane.showMessageDialog(null,ex);
         JOptionPane.showMessageDialog(null,"No ha ingresado informacion o faltan campos por completar");
-    }
+    }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
    }
     
     public void ingresar_productos(JTextField cod_producto,JTextField nombre,JTextField talla,JTextField precio,
@@ -429,9 +467,12 @@ public class metodos {
          
      }
     }catch(SQLException ex){
-        JOptionPane.showMessageDialog(null,ex);
         JOptionPane.showMessageDialog(null,"No ha ingresado informacion o faltan campos por completar");
-    }}
+    }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }}
     
     public void ingresar_empleados(JComboBox tipo_documento,JTextField documento,JTextField nombres,JTextField apellidos,
             JTextField direcccion,JTextField telefono){
@@ -468,9 +509,12 @@ public class metodos {
          
      }
     }catch(SQLException ex){
-        JOptionPane.showMessageDialog(null,ex);
         JOptionPane.showMessageDialog(null,"No ha ingresado informacion o faltan campos por completar");
-    }}
+    }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }}
    
     public void ingresar_usuario_nuevo_empleado(JTextField usuario_nuevo,JTextField clave_nueva,JTextField verificar_contraseña){
         String usuario_nuevo1,clave_nueva1,verificar_contraseña1,mensaje,Ssql;
@@ -488,13 +532,14 @@ public class metodos {
      pst.setString(2,clave_nueva1);
      
      int no= pst.executeUpdate();
-     if(no>0){
-         JOptionPane.showMessageDialog(null, mensaje);
-         
-     }
+     if(no>0){}
     }catch(SQLException ex){
         JOptionPane.showMessageDialog(null,"No ha ingresado informacion o faltan campos por completar");
-    }}}
+    }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }}}
     
     public void actualizar_existencias(){
      String Ssql;
@@ -510,7 +555,11 @@ public class metodos {
      }
     }catch(SQLException ex){
         JOptionPane.showMessageDialog(null,ex);
-    }}
+    }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }}
     
      public void actualizar(JTable result,JTextField n_empleado,JTextField vendedor,JTextField N_documento,JTextField Ciudad,
     JTextField cliente,JTextField doc_identidad1,JTextField direccion1,JTextField telefono,JTextField cd,JTextField np
@@ -586,7 +635,11 @@ public class metodos {
      }
     }catch(SQLException ex){
         JOptionPane.showMessageDialog(null,ex);
-    }}
+    }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }}
      
      
      public void actualizar_producto(JTable result,JTextField cod_producto,JTextField nombre,JTextField talla,JTextField precio,
@@ -603,11 +656,11 @@ public class metodos {
     SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     Date dia=new Date();
     fecha=format.format(dia);
-    ob=observacio.getText();
+    observacion=observacio.getText();
     actualidad_act=observacion+" el usuario "+texto+" actualiza el dia "+fecha+" el codigo del producto"+cod;
          
          Ssql="UPDATE `productos` SET `cod_produtos`=?,`nombre_producto`=?,`"
-         + "precio`=?,`talla`=?,`color`=?,`existencias`=?,`observacion`=?,`observacion_actualizacion`=?"
+         + "precio`=?,`talla`=?,`color`=?,`existencias`=?,`observacion`=?"
          + "  WHERE `cod_nit`='"+ID+"'";
          
          mensaje="los datos se actualizaron correctamente";
@@ -619,8 +672,7 @@ public class metodos {
      pst.setString(4,tallas);
      pst.setString(5,colores);
      pst.setString(6,cuentas);
-     pst.setString(7,ob);
-     pst.setString(8,actualidad_act);
+     pst.setString(7,observacion);
      
      int no= pst.executeUpdate();
      if(no>0)
@@ -629,8 +681,12 @@ public class metodos {
         
      }
     }catch(SQLException ex){
-        JOptionPane.showMessageDialog(null,ex);
-    }}
+        
+    }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }}
      
      public void actualizar_regresar_existencia(JTable result){
          String ID,existencias="",mensaje="",total="",query2="";
@@ -650,7 +706,11 @@ public class metodos {
         catch (SQLException e) 
         {
          JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
          
          suma=Integer.parseInt(existencias)+Integer.parseInt(devolver_p);
          total=String.valueOf(suma);
@@ -670,7 +730,11 @@ public class metodos {
      }
     }catch(SQLException ex){
         JOptionPane.showMessageDialog(null,ex);
-    }
+    }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
      }
      
      
@@ -713,7 +777,11 @@ public class metodos {
      }
     }catch(SQLException ex){
         JOptionPane.showMessageDialog(null,ex);
-    }}
+    }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }}
     
     public void actualizar_contraseña_usuario_login(JTextField usuario_actual,JTextField clave_actual,JTextField usuario_nuevo,JTextField contraseña_nueva,JTextField verificar_contraseña){
         
@@ -736,7 +804,11 @@ public class metodos {
         catch (SQLException e) 
         {
          
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
         
         if(verificar_contraseña1.equals(contraseña_nueva1)){
         
@@ -784,7 +856,13 @@ public class metodos {
         catch (SQLException e) 
         {
          
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
         
         if(verificar_contraseña1.equals(contraseña_nueva1)){
         
@@ -803,7 +881,11 @@ public class metodos {
      }
     }catch(SQLException ex){
         JOptionPane.showMessageDialog(null,"el usuario o contraseña no existen, verifique esos datos esten correctamente escritos");
-    }}else{
+    }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }}else{
             JOptionPane.showMessageDialog(null,"Las contaseñas no son iguales");
         }
     } 
@@ -830,7 +912,11 @@ public class metodos {
         catch (SQLException e) 
         {
          
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
         
         if(verificar_contraseña1.equals(contraseña_nueva1)){
         
@@ -850,7 +936,11 @@ public class metodos {
      }
     }catch(SQLException ex){
         JOptionPane.showMessageDialog(null,"el usuario o contraseña no existen, verifique esos datos esten correctamente escritos");
-    }
+    }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
         
             
         }else{
@@ -877,7 +967,11 @@ public class metodos {
         catch (SQLException ex) 
          {
            JOptionPane.showMessageDialog(null, ex.getMessage());
-          } 
+          }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           } 
      }
     public void borrar_producto(JTable result){
     Date sistFecha=new Date();
@@ -899,7 +993,11 @@ public class metodos {
         catch (SQLException ex) 
          {
            JOptionPane.showMessageDialog(null, ex.getMessage());
-          } 
+          } finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
      }
     
     public void borrar_empleado(JTable result){
@@ -923,7 +1021,11 @@ public class metodos {
         catch (SQLException ex) 
          {
            JOptionPane.showMessageDialog(null, ex.getMessage());
-          } 
+          } finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
      }
      
      
@@ -942,7 +1044,11 @@ public class metodos {
         catch (SQLException e) 
         {
          JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
          try {
 		String query="SELECT * FROM `cliente`";
 		ps=cn.prepareStatement(query);
@@ -957,7 +1063,11 @@ public class metodos {
         catch (SQLException e) 
         {
          JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        }finally{
+            try {
+                cn.close();
+            } catch (SQLException ex) {}
+           }
          }  
      
     public void seleccionar(JTable result,JTextField n_empleado,JTextField vendedor,JTextField N_documento,JTextField Ciudad,

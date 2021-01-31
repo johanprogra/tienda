@@ -45,15 +45,7 @@ public class inventario_tabla extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void main(String args[]) {
   
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new inventario_tabla().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

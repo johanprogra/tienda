@@ -12,14 +12,10 @@ import static funciones.autocompletar.existencias1;
 import static funciones.autocompletar.nombre_producto;
 import static funciones.autocompletar.nombrecli;
 import static funciones.autocompletar.telefono1;
-import static funciones.graficos1.buscar1;
 import static funciones.graficos1.graficost;
 import static funciones.graficos1.total;
 import java.awt.event.KeyEvent;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JComboBox;
@@ -126,12 +122,12 @@ public void validacion_campos_productos(JTable result,JTextField cod_producto,JT
     colores=color.getText();
     ob=observacion.getText();
     
-    if(cod.equals("") || n_producto.equals("") || tallas.equals("") || precios.equals("") || colores.equals("") || ob.equals("")){
-        JOptionPane.showMessageDialog(null,"Faltan campos por llenar");
-    }else{
+    if(cod !=null || n_producto !=null || tallas !=null || precios !=null || colores !=null || ob !=null){
     metodos met=new metodos();
     met.ingresar_productos(cod_producto, nombre, talla, precio, color, cuenta, observacion);
     met.mostrar_productos(result);
+     }else{
+    JOptionPane.showMessageDialog(null,"Faltan campos por llenar");
     }
 }
 public void validacion_numeros(java.awt.event.KeyEvent evt) {

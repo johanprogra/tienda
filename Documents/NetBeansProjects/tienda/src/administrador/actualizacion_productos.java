@@ -293,14 +293,7 @@ public class actualizacion_productos extends javax.swing.JFrame {
        dispose();
        
     }//GEN-LAST:event_regresarActionPerformed
- public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new actualizacion_productos().setVisible(true);
-            }
-        });
-    }
-
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton act;
     private javax.swing.JButton atras;

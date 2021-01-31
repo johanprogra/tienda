@@ -2,10 +2,9 @@ package Funciones;
 
 
 import baseDatos.conexionMYSQL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import static tienda.login.texto;
@@ -37,10 +36,15 @@ public class usuario {
             JOptionPane.showMessageDialog(null, "Usuario  o contaseña incorrecta...","Incorrecto",JOptionPane.ERROR_MESSAGE);
         }
         }
-        catch(SQLException ex)
-        {
+        catch(SQLException ex){
         JOptionPane.showMessageDialog(null,ex, "Error!!", JOptionPane.ERROR_MESSAGE);
-        }
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
 }   
     public void Logguearse_admin(JTextField usuario1, JTextField contraseña){
         String nom=usuario1.getText();
@@ -67,7 +71,13 @@ public class usuario {
         catch(SQLException ex)
         {
         JOptionPane.showMessageDialog(null,ex, "Error!!", JOptionPane.ERROR_MESSAGE);
-        }
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(autocompletar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           }
     }
     
 }

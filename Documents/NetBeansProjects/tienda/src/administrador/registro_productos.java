@@ -8,6 +8,7 @@ import funciones.autocompletar;
 import funciones.comparacion;
 import funciones.metodos;
 import java.awt.Dimension;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -486,7 +487,7 @@ public class registro_productos extends javax.swing.JFrame {
        }else if(act1.equals("")){
            JOptionPane.showMessageDialog(null,"Para poder actualizar o borrar debe buscar el producto");
        }
-        }catch(Exception ex){
+        }catch(HeadlessException ex){
         
     }
         
@@ -504,7 +505,7 @@ public class registro_productos extends javax.swing.JFrame {
            observacion=JOptionPane.showInputDialog("Digite el motivo de la modificacion del producto");
         
         if(observacion1.equals("")){
-            JOptionPane.showMessageDialog(null,"Por favor ingresar el motivo para actalizacion del producto");
+            JOptionPane.showMessageDialog(null,"Por favor falta ingresar el motivo para la actalizacion del producto");
         }else{
            metodos net=new metodos();
            net.actualizar_producto(result, cod_producto, nombre, talla, precio, color, cuenta, observacion1);
@@ -530,42 +531,6 @@ public class registro_productos extends javax.swing.JFrame {
      comparacion comp=new comparacion();
      comp.validacion_numeros(evt);
     }//GEN-LAST:event_precioKeyTyped
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(registro_productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(registro_productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(registro_productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(registro_productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new registro_productos().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualizar;

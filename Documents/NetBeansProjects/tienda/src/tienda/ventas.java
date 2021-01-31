@@ -1001,14 +1001,6 @@ public class ventas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cdActionPerformed
     
-   
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ventas().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Ciudad;

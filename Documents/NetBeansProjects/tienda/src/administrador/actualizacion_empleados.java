@@ -288,13 +288,6 @@ public class actualizacion_empleados extends javax.swing.JFrame {
        dispose();
        
     }//GEN-LAST:event_regresarActionPerformed
- public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new actualizacion_empleados().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton act;

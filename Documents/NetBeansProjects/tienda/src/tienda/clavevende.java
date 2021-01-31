@@ -1,7 +1,7 @@
 
 package tienda;
-import java.awt.Dimension;
 import Funciones.usuario;
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import static tienda.login.cer;

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class conexionMYSQL {
-    private final String driver="com.mysql.jdbc.Driver";
+    private final String driver="com.mysql.cj.jdbc.Driver";
     private final String cadenaConeccion="jdbc:mysql://localhost/tejido";
     private final String usuario="root";
     private final String contraseña="";

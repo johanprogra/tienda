@@ -3,10 +3,7 @@ package funciones;
 
 import baseDatos.conexionMYSQL;
 import com.toedter.calendar.JDateChooser;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import javax.swing.JOptionPane;

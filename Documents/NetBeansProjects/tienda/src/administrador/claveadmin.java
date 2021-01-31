@@ -2,9 +2,9 @@
 package administrador;
 import tienda.*;
 import java.awt.Dimension;
-import Funciones.usuario;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import Funciones.usuario;
 import static tienda.login.cer;
 
 public class claveadmin extends javax.swing.JFrame {
