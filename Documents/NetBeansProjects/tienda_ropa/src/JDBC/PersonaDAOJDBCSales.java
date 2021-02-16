@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PersonaDAOJDBCSales implements PersonaDaoSales{
-    private static final String SQL_INSERT="INSERT INTO ventas(`cod_empleado`, `doc_empleado`, `ciudad`, `vendedor`, `cliente`, `n_documento_cliente`, `direccion_cliente`, `telefono_cliente`, `cod_producto`, `nombre_producto`, `precio`, `bodega`, `n_prendas`, `descuento`, `pago`, `iva`, `subtotal`, `neto`, `fecha`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    private final String SQL_INSERT="INSERT INTO ventas(`cod_empleado`, `doc_empleado`, `ciudad`, `vendedor`, `cliente`, `n_documento_cliente`, `direccion_cliente`, `telefono_cliente`, `cod_producto`, `nombre_producto`, `precio`, `bodega`, `n_prendas`, `descuento`, `pago`, `iva`, `subtotal`, `neto`, `fecha`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     
-    private static final String SQL_UPDATE="UPDATE `ventas` SET `cod_empleado`= ?, `doc_empleado`= ?,"
+    private final String SQL_UPDATE="UPDATE `ventas` SET `cod_empleado`= ?, `doc_empleado`= ?,"
     + " `ciudad`= ?, `vendedor`= ?, `cliente`= ?, `n_documento_cliente`= ?, `direccion_cliente`= ?,"
     + " `telefono_cliente`= ?, `cod_producto`= ?, `nombre_producto`= ?, `precio`= ?, `bodega`= ?,"
     + " `n_prendas`= ?, `descuento`= ?, `pago`= ?, `iva`= ?, `subtotal`= ?, `neto`= ?,`obsevacion_de_actualizacion`= ? WHERE `ID_cod`=?";
     
-    private static final String SQL_DELETE="delete from ventas where ID_cod=?";
+    private final String SQL_DELETE="delete from ventas where ID_cod=?";
     
     private final String SQL_SELECT="SELECT * FROM `ventas` WHERE `ID_cod`";
     

@@ -12,13 +12,13 @@ import javax.swing.JOptionPane;
 
 public class funtionsLogin {
     
-    private static String user=null;
+    private String user=null;
     
-    private static String password=null;
+    private String password=null;
     
-    private static String usertemp=null;
+    private String usertemp=null;
     
-    private static String passwordtemp=null;
+    private String passwordtemp=null;
     
     public boolean message=false;
 
@@ -32,23 +32,21 @@ public class funtionsLogin {
       try{
           List<PersonaDTOLogin> personas = personaDao.select();
           for (PersonaDTOLogin u : personas) {
-              usertemp=String.valueOf(u.getUser());
-              passwordtemp=String.valueOf(u.getPassword());
+              usertemp=u.getUser();
+              passwordtemp=u.getPassword();
           }
           if(usertemp!=null && passwordtemp!=null){
             if(usertemp.equals(user) && passwordtemp.equals(password)){
-            JOptionPane.showMessageDialog(null,"Bienvendio "+user);    
+            JOptionPane.showMessageDialog(null,"Bienvendio (a) "+user+" al menú vendedor");    
             menuSeller menu=new menuSeller();
             menu.setVisible(true);
                  return message=true;
-            }else{
-            JOptionPane.showMessageDialog(null,"Contraseña o Usuario Incorrecto!");    
+            }}else{
+            JOptionPane.showMessageDialog(null,"Contraseña o Usuario Incorrecto!");
                  return message=false;
-            }}
+            }
               
-      }catch (SQLException ex) {
-          
-        }
+      }catch (SQLException ex) {}
         return message;
     }
     

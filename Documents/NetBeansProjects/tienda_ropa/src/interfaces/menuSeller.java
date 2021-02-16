@@ -1,7 +1,7 @@
 
 package interfaces;
 
-import functions.funtionName;
+import PersonaDTO.PersonaDTOLogin;
 import functions.time;
 import java.awt.*;
 import java.awt.event.*;
@@ -37,8 +37,9 @@ public class menuSeller extends javax.swing.JFrame {
         this.repaint();
         this.setSize(new Dimension(640,490)); 
         setLocationRelativeTo(null);
-        funtionName name=new funtionName();
-        nombrep.setText("BIENVENIDO (a) "+name.getNames());
+        
+        PersonaDTOLogin persona=new PersonaDTOLogin();
+        nombrep.setText("¡Bienvenido (a) "+persona.getUser()+" al menu vendedor!");
         
        Timer tiempo1=new Timer(100, new menuSeller.horas());
        tiempo1.start();
@@ -255,7 +256,7 @@ public class menuSeller extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cerrarapliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarapliActionPerformed
-     JOptionPane.showMessageDialog(null,"Gracias por utilizar el programa vuelve pronto");
+     JOptionPane.showMessageDialog(null,"!Gracias por utilizar el programa vuelve pronto¡");
      System.exit(0);
     }//GEN-LAST:event_cerrarapliActionPerformed
 

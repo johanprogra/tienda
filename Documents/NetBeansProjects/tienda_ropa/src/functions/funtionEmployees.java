@@ -13,10 +13,6 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class funtionEmployees {
-    private static int ID_nitTemp;
-    private static int documentoTemp;
-    private static String nombresTemp="";
-    private static String apellidosTemp="";
     
     public funtionEmployees() {}
     
@@ -34,14 +30,6 @@ public class funtionEmployees {
               });
               for (PersonaDTOemployees u : personas) {
                   
-              ID_nitTemp=Integer.valueOf(u.getID_nit());
-              
-              documentoTemp=Integer.valueOf(u.getDocumento());
-              
-              nombresTemp=String.valueOf(u.getNombres());
-              
-              apellidosTemp=String.valueOf(u.getApellidos());
-              
               modelo.addRow(new Object[]{u.getID_nit(),u.getTipo_documento(),u.getDocumento(),u.getNombres(),u.getApellidos()
               
               ,u.getDireccion(),u.getTelefono()});
@@ -54,28 +42,20 @@ public class funtionEmployees {
           
         }
     }
-    public String EmployeesId(JTextField n_empleado,JTextField vendedor,JTextField N_documento){
-    if (n_empleado!=null) {
-    PersonaDaoEmployees personaDao = new PersonaDAOJDBCEmployees(n_empleado.getText().trim());
-    
-    try{
-        List<PersonaDTOemployees> personas = personaDao.selectId();
-        for (PersonaDTOemployees u : personas) {
-            
-           documentoTemp=Integer.valueOf(u.getDocumento());
+    public void dateUsedID(JTextField vendedor,JTextField N_documento){
+        PersonaDaoEmployees personaDao = new PersonaDAOJDBCEmployees();
+        try{
+           List<PersonaDTOemployees> personas = personaDao.select_id();
+           for (PersonaDTOemployees u : personas) {
+              int ID_nitEmpleadoTemp=u.getID_nit(); 
+               
+              N_documento.setText(String.valueOf(u.getDocumento()));
               
-           nombresTemp=String.valueOf(u.getNombres());
-              
-           apellidosTemp=String.valueOf(u.getApellidos());
+              vendedor.setText(u.getNombres()+" "+u.getApellidos());
+           }
+        }catch (SQLException ex) {
+          JOptionPane.showMessageDialog(null,"Error!!!  "+ex);
+          
         }
-           
-    }catch (SQLException ex) {
-     JOptionPane.showMessageDialog(null,"Error!!!  "+ex);
-    }
-        vendedor.setText(nombresTemp+" "+apellidosTemp);
-        N_documento.setText(String.valueOf(documentoTemp));
-    }
-    
-    return null;
     }
 }

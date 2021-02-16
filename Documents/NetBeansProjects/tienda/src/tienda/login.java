@@ -16,7 +16,7 @@ public class login extends javax.swing.JFrame {
      public static String texto="",cer="";
     public login() {
         initComponents();
-        this.setSize(new Dimension(870, 710));
+        this.setSize(new Dimension(830, 600));
         setLocationRelativeTo(null);
         
         ImageIcon imagen1=new ImageIcon(getClass().getResource("/imagenes/adminis.png"));
@@ -139,7 +139,7 @@ public class login extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

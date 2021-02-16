@@ -2,7 +2,6 @@
 package interfaces;
 
 import JDBC.PersonaDAOJDBCLoginSales;
-import functions.funtionName;
 import functions.funtionsLogin;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -170,7 +169,6 @@ public class loginUserSeller extends javax.swing.JFrame {
 
     private void usuario1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usuario1KeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            funtionName name=new funtionName(usuario1.getText());
             PersonaDAOJDBCLoginSales enviar=new PersonaDAOJDBCLoginSales(usuario1.getText(),contraseña1.getText());
             funtionsLogin login=new funtionsLogin(usuario1.getText(),contraseña1.getText());
             boolean message=login.login_vendedor();
@@ -186,7 +184,6 @@ public class loginUserSeller extends javax.swing.JFrame {
 
     private void contraseña1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_contraseña1KeyPressed
          if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            funtionName name=new funtionName(usuario1.getText());
             PersonaDAOJDBCLoginSales enviar=new PersonaDAOJDBCLoginSales(usuario1.getText(),contraseña1.getText());
             funtionsLogin login=new funtionsLogin(usuario1.getText(),contraseña1.getText());
             boolean message=login.login_vendedor();
@@ -197,7 +194,6 @@ public class loginUserSeller extends javax.swing.JFrame {
     }//GEN-LAST:event_contraseña1KeyPressed
 
     private void ingresar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresar2ActionPerformed
-            funtionName name=new funtionName(usuario1.getText());
             PersonaDAOJDBCLoginSales enviar=new PersonaDAOJDBCLoginSales(usuario1.getText(),contraseña1.getText());
             funtionsLogin login=new funtionsLogin(usuario1.getText(),contraseña1.getText());
             boolean message=login.login_vendedor();

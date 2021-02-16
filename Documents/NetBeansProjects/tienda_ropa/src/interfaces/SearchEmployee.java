@@ -176,7 +176,7 @@ public class SearchEmployee extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscarKeyReleased
-    PersonaDAOJDBCEmployees person=new PersonaDAOJDBCEmployees(buscar.getText());
+    PersonaDAOJDBCEmployees person=new PersonaDAOJDBCEmployees(buscar.getText().trim());
     funtionEmployees data=new funtionEmployees();
     data.dataUsed(result);
     }//GEN-LAST:event_buscarKeyReleased

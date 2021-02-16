@@ -1,7 +1,6 @@
 
 package PersonaDTO;
 
-
 public class PersonaDTOemployees {
     
     private static String parametro;

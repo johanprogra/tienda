@@ -38,7 +38,6 @@ public class MenuLogin extends javax.swing.JFrame {
       time hor=new time();
       hor.tiempo(horario);
         }
-    
     }
     
     @SuppressWarnings("unchecked")
@@ -163,9 +162,9 @@ public class MenuLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_adminActionPerformed
 
     private void vendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vendedorActionPerformed
+        dispose();
         loginUserSeller e2=new loginUserSeller();
         e2.setVisible(true);
-        dispose();
     }//GEN-LAST:event_vendedorActionPerformed
 
 

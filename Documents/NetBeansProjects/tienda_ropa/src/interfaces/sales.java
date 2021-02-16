@@ -1,7 +1,9 @@
 
 package interfaces;
+import JDBC.PersonaDAOJDBCEmployees;
 import PersonaDTO.PersonaDTOemployees;
-import functions.funtion_validacion;
+import PersonaDTO.personaDTOcustomers;
+import functions.funtionEmployees;
 import functions.time;
 import java.awt.*;
 import java.awt.event.*;
@@ -11,9 +13,14 @@ import javax.swing.Icon;
 
 public class sales extends javax.swing.JFrame {
     DefaultTableModel modelo= new DefaultTableModel();
-    private int ID_nitTemp;
-    private int documentoTemp;
-    private String nombresTemp;
+    private final int ID_nitEmpleadoTemp;
+    private final int documentoEmpleadoTemp;
+    private final String nombresEmpleadoTemp;
+    private final String ciudadClienteTemp;
+    private final String nombresClienteTemp;
+    private final String direccionClienteTemp;
+    private final int cedulaClienteTemp;
+    private final int telefonoClienteTemp;
     
     public sales() {
         
@@ -43,7 +50,7 @@ public class sales extends javax.swing.JFrame {
         regi.setIcon(fon4);
         dev.setIcon(fon5);
         buscaralgo1.setIcon(fon6);
-        buscaralgo2.setIcon(fon6);
+        buscarcliente.setIcon(fon6);
         limpiar.setIcon(fon7);
         venta.setIcon(fon8);
         
@@ -63,21 +70,33 @@ public class sales extends javax.swing.JFrame {
         N_documento.enable(false);
         Ciudad.enable(false);
         p.enable(false);
-        n_empleado.enable(false);
         
         SpinnerNumberModel nm=new SpinnerNumberModel();
         nm.setValue(1);
         nm.setMinimum(1);
         n1.setModel(nm);
         
-        PersonaDTOemployees person=new PersonaDTOemployees();
-        ID_nitTemp=person.getID_nit();
-        documentoTemp=person.getDocumento();
-        nombresTemp=person.getNombres()+" "+person.getApellidos();
+        PersonaDTOemployees person1=new PersonaDTOemployees();
+        ID_nitEmpleadoTemp=person1.getID_nit();
+        documentoEmpleadoTemp=person1.getDocumento();
+        nombresEmpleadoTemp=person1.getNombres()+" "+person1.getApellidos();
         
-        vendedor.setText(nombresTemp);
-        n_empleado.setText(String.valueOf(ID_nitTemp));
-        N_documento.setText(String.valueOf(documentoTemp));
+        vendedor.setText(nombresEmpleadoTemp);
+        c_empleado.setText(String.valueOf(ID_nitEmpleadoTemp));
+        N_documento.setText(String.valueOf(documentoEmpleadoTemp));
+        
+        personaDTOcustomers person2=new personaDTOcustomers();
+        ciudadClienteTemp=person2.getCiudad();
+        nombresClienteTemp=person2.getNombres()+" "+person2.getApellidos();
+        direccionClienteTemp=person2.getDireccion();
+        cedulaClienteTemp=person2.getCedula();
+        telefonoClienteTemp=person2.getCelular();
+        
+        Ciudad.setText(ciudadClienteTemp);
+        cliente1.setText(nombresClienteTemp);
+        direccion1.setText(direccionClienteTemp);
+        doc_identidad1.setText(String.valueOf(cedulaClienteTemp));
+        telefono.setText(String.valueOf(telefonoClienteTemp));
         
        Timer tiempo1=new Timer(100, new sales.horas());
        tiempo1.start();
@@ -134,7 +153,7 @@ public class sales extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         registrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        buscaralgo2 = new javax.swing.JButton();
+        buscarcliente = new javax.swing.JButton();
         telefono = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         cliente1 = new javax.swing.JTextField();
@@ -145,7 +164,7 @@ public class sales extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        n_empleado = new javax.swing.JTextField();
+        c_empleado = new javax.swing.JTextField();
         buscaralgo1 = new javax.swing.JButton();
         vendedor = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
@@ -405,6 +424,10 @@ public class sales extends javax.swing.JFrame {
         jPanel7.add(jLabel18);
         jLabel18.setBounds(250, 0, 69, 17);
 
+        result = new javax.swing.JTable(){
+            public boolean isCellEditable(int row, int column) {
+                return false; }
+        };
         result.setBackground(new java.awt.Color(153, 153, 153));
         result.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         result.setModel(new javax.swing.table.DefaultTableModel(
@@ -547,13 +570,13 @@ public class sales extends javax.swing.JFrame {
         jLabel2.setText("Telefono");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 70, -1));
 
-        buscaralgo2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        buscaralgo2.addActionListener(new java.awt.event.ActionListener() {
+        buscarcliente.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        buscarcliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscaralgo2ActionPerformed(evt);
+                buscarclienteActionPerformed(evt);
             }
         });
-        jPanel1.add(buscaralgo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 64, 50));
+        jPanel1.add(buscarcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 64, 50));
 
         telefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         telefono.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -630,27 +653,27 @@ public class sales extends javax.swing.JFrame {
         jPanel3.add(jLabel4);
         jLabel4.setBounds(370, 50, 60, 17);
 
-        n_empleado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        n_empleado.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        n_empleado.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        n_empleado.addActionListener(new java.awt.event.ActionListener() {
+        c_empleado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        c_empleado.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        c_empleado.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        c_empleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                n_empleadoActionPerformed(evt);
+                c_empleadoActionPerformed(evt);
             }
         });
-        n_empleado.addKeyListener(new java.awt.event.KeyAdapter() {
+        c_empleado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                n_empleadoKeyPressed(evt);
+                c_empleadoKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                n_empleadoKeyReleased(evt);
+                c_empleadoKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                n_empleadoKeyTyped(evt);
+                c_empleadoKeyTyped(evt);
             }
         });
-        jPanel3.add(n_empleado);
-        n_empleado.setBounds(530, 10, 68, 20);
+        jPanel3.add(c_empleado);
+        c_empleado.setBounds(530, 10, 68, 20);
 
         buscaralgo1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buscaralgo1.addActionListener(new java.awt.event.ActionListener() {
@@ -809,12 +832,16 @@ public class sales extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_telefonoActionPerformed
 
-    private void buscaralgo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaralgo2ActionPerformed
-       
-    }//GEN-LAST:event_buscaralgo2ActionPerformed
+    private void buscarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarclienteActionPerformed
+      dispose();
+      SearchClients clients=new SearchClients();
+      clients.setVisible(true);
+    }//GEN-LAST:event_buscarclienteActionPerformed
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
-  
+    dispose();
+    CustomersRegistratition registration=new CustomersRegistratition();
+    registration.setVisible(true);
     }//GEN-LAST:event_registrarActionPerformed
 
     private void buscaralgo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaralgo1ActionPerformed
@@ -823,17 +850,19 @@ public class sales extends javax.swing.JFrame {
     serch.setVisible(true);
     }//GEN-LAST:event_buscaralgo1ActionPerformed
 
-    private void n_empleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_n_empleadoKeyTyped
+    private void c_empleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_c_empleadoKeyTyped
     
-    }//GEN-LAST:event_n_empleadoKeyTyped
+    }//GEN-LAST:event_c_empleadoKeyTyped
 
-    private void n_empleadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_n_empleadoKeyReleased
-   
-    }//GEN-LAST:event_n_empleadoKeyReleased
+    private void c_empleadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_c_empleadoKeyReleased
+     PersonaDAOJDBCEmployees persona=new PersonaDAOJDBCEmployees(c_empleado.getText());
+     funtionEmployees funcion=new funtionEmployees();
+     funcion.dateUsedID(vendedor, N_documento);
+    }//GEN-LAST:event_c_empleadoKeyReleased
 
-    private void n_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_n_empleadoActionPerformed
+    private void c_empleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_empleadoActionPerformed
 
-    }//GEN-LAST:event_n_empleadoActionPerformed
+    }//GEN-LAST:event_c_empleadoActionPerformed
 
     private void formaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formaActionPerformed
         // TODO add your handling code here:
@@ -933,9 +962,9 @@ public class sales extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cdActionPerformed
 
-    private void n_empleadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_n_empleadoKeyPressed
+    private void c_empleadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_c_empleadoKeyPressed
       
-    }//GEN-LAST:event_n_empleadoKeyPressed
+    }//GEN-LAST:event_c_empleadoKeyPressed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -944,7 +973,8 @@ public class sales extends javax.swing.JFrame {
     public javax.swing.JTextField Subtotal;
     public javax.swing.JComboBox bodega;
     public javax.swing.JButton buscaralgo1;
-    public javax.swing.JButton buscaralgo2;
+    public javax.swing.JButton buscarcliente;
+    private javax.swing.JTextField c_empleado;
     public javax.swing.JTextField cd;
     private javax.swing.JTextField cliente1;
     public javax.swing.JComboBox descuento;
@@ -991,7 +1021,6 @@ public class sales extends javax.swing.JFrame {
     private javax.swing.JLabel logo1;
     public javax.swing.JButton most;
     public javax.swing.JSpinner n1;
-    private javax.swing.JTextField n_empleado;
     public javax.swing.JTextField neto;
     public javax.swing.JTextField np;
     private javax.swing.JTextField p;

@@ -3,9 +3,9 @@ package PersonaDTO;
 
 public class PersonaDTOLogin {
     
-    String user;
+    private static String user;
     
-    String Password;
+    private static String Password;
 
     public PersonaDTOLogin() {}
     
