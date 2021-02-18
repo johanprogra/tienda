@@ -2,7 +2,6 @@
 package PersonaDTO;
 
 public class personaDTOcustomers {
-   private static String parametro; 
    private static int ID_nit;
    private static String tipo_documento;
    private static int cedula;
@@ -16,10 +15,6 @@ public class personaDTOcustomers {
    private static String observacion;
 
     public personaDTOcustomers() {}
-
-    public String getParametro() {return parametro;}
-
-    public void setParametro(String parametro) {this.parametro = parametro;}
 
     public int getID_nit() {return ID_nit;}
 

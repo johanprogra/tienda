@@ -81,7 +81,7 @@ public class menuSeller extends javax.swing.JFrame {
 
         nombrep.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         nombrep.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(nombrep, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 350, 29));
+        jPanel4.add(nombrep, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 520, 29));
         jPanel4.add(horario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 360, 23));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 255));
@@ -273,7 +273,9 @@ public class menuSeller extends javax.swing.JFrame {
     }//GEN-LAST:event_vendedorActionPerformed
 
     private void inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventarioActionPerformed
-        
+    dispose();
+    SearchProducts pro=new SearchProducts();
+    pro.setVisible(true);        
     }//GEN-LAST:event_inventarioActionPerformed
 
     private void registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroActionPerformed

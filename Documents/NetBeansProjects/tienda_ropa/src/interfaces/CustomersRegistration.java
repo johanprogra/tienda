@@ -10,10 +10,10 @@ import javax.swing.*;
 import javax.swing.Icon;
 
 
-public class CustomersRegistratition extends javax.swing.JFrame {
+public class CustomersRegistration extends javax.swing.JFrame {
 
 
-    public CustomersRegistratition() {
+    public CustomersRegistration() {
         initComponents();
         ImageIcon imagen1=new ImageIcon(getClass().getResource("/images/reg.png"));
         ImageIcon imagen2=new ImageIcon(getClass().getResource("/images/limpiar.png"));
@@ -400,7 +400,7 @@ public class CustomersRegistratition extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 754, 570);
+        jPanel1.setBounds(0, 0, 0, 570);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

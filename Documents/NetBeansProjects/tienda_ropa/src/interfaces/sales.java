@@ -2,8 +2,10 @@
 package interfaces;
 import JDBC.PersonaDAOJDBCEmployees;
 import PersonaDTO.PersonaDTOemployees;
+import PersonaDTO.personaDTOProducts;
 import PersonaDTO.personaDTOcustomers;
 import functions.funtionEmployees;
+import functions.funtionOperations;
 import functions.time;
 import java.awt.*;
 import java.awt.event.*;
@@ -13,14 +15,6 @@ import javax.swing.Icon;
 
 public class sales extends javax.swing.JFrame {
     DefaultTableModel modelo= new DefaultTableModel();
-    private final int ID_nitEmpleadoTemp;
-    private final int documentoEmpleadoTemp;
-    private final String nombresEmpleadoTemp;
-    private final String ciudadClienteTemp;
-    private final String nombresClienteTemp;
-    private final String direccionClienteTemp;
-    private final int cedulaClienteTemp;
-    private final int telefonoClienteTemp;
     
     public sales() {
         
@@ -77,26 +71,28 @@ public class sales extends javax.swing.JFrame {
         n1.setModel(nm);
         
         PersonaDTOemployees person1=new PersonaDTOemployees();
-        ID_nitEmpleadoTemp=person1.getID_nit();
-        documentoEmpleadoTemp=person1.getDocumento();
-        nombresEmpleadoTemp=person1.getNombres()+" "+person1.getApellidos();
         
-        vendedor.setText(nombresEmpleadoTemp);
-        c_empleado.setText(String.valueOf(ID_nitEmpleadoTemp));
-        N_documento.setText(String.valueOf(documentoEmpleadoTemp));
+        vendedor.setText(person1.getNombres()+" "+person1.getApellidos());
+        c_empleado.setText(String.valueOf(person1.getID_nit()));
+        N_documento.setText(String.valueOf(person1.getDocumento()));
         
         personaDTOcustomers person2=new personaDTOcustomers();
-        ciudadClienteTemp=person2.getCiudad();
-        nombresClienteTemp=person2.getNombres()+" "+person2.getApellidos();
-        direccionClienteTemp=person2.getDireccion();
-        cedulaClienteTemp=person2.getCedula();
-        telefonoClienteTemp=person2.getCelular();
         
-        Ciudad.setText(ciudadClienteTemp);
-        cliente1.setText(nombresClienteTemp);
-        direccion1.setText(direccionClienteTemp);
-        doc_identidad1.setText(String.valueOf(cedulaClienteTemp));
-        telefono.setText(String.valueOf(telefonoClienteTemp));
+        Ciudad.setText(person2.getCiudad());
+        cliente1.setText(person2.getNombres()+" "+person2.getApellidos());
+        direccion1.setText(person2.getDireccion());
+        doc_identidad1.setText(String.valueOf(person2.getCedula()));
+        telefono.setText(String.valueOf(person2.getCelular()));
+        
+        personaDTOProducts products=new personaDTOProducts();
+        
+        cd.setText(String.valueOf(products.getCod_producto()));
+        np.setText(products.getNombre_producto());
+        p.setText(String.valueOf(products.getPrecio()));
+        
+        funtionOperations operations=new funtionOperations
+        ((int) n1.getValue(),Float.parseFloat((String)descuento.getSelectedItem()));
+        operations.operations(iva, Subtotal, neto);
         
        Timer tiempo1=new Timer(100, new sales.horas());
        tiempo1.start();
@@ -327,11 +323,8 @@ public class sales extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel8))))
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(np, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -493,10 +486,6 @@ public class sales extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(125, 125, 125)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -521,6 +510,9 @@ public class sales extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(237, 237, 237))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -840,7 +832,7 @@ public class sales extends javax.swing.JFrame {
 
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
     dispose();
-    CustomersRegistratition registration=new CustomersRegistratition();
+    CustomersRegistration registration=new CustomersRegistration();
     registration.setVisible(true);
     }//GEN-LAST:event_registrarActionPerformed
 
@@ -892,7 +884,7 @@ public class sales extends javax.swing.JFrame {
     }//GEN-LAST:event_regiActionPerformed
 
     private void n1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_n1KeyReleased
-
+    
     }//GEN-LAST:event_n1KeyReleased
 
     private void n1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_n1MouseReleased
@@ -908,12 +900,15 @@ public class sales extends javax.swing.JFrame {
     }//GEN-LAST:event_n1MouseClicked
 
     private void n1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_n1StateChanged
-     
-        
+    funtionOperations operations=new funtionOperations
+    ((int) n1.getValue(),Float.parseFloat((String)descuento.getSelectedItem()));
+    operations.operations(iva, Subtotal, neto);
     }//GEN-LAST:event_n1StateChanged
 
     private void mostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostActionPerformed
-       
+    dispose();
+    SearchProducts pro=new SearchProducts();
+    pro.setVisible(true);
     }//GEN-LAST:event_mostActionPerformed
 
     private void descuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descuentoActionPerformed
@@ -941,7 +936,9 @@ public class sales extends javax.swing.JFrame {
     }//GEN-LAST:event_descuentoMouseClicked
 
     private void descuentoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_descuentoItemStateChanged
-      
+    funtionOperations operations=new funtionOperations
+    ((int) n1.getValue(),Float.parseFloat((String)descuento.getSelectedItem()));
+    operations.operations(iva, Subtotal, neto);
     }//GEN-LAST:event_descuentoItemStateChanged
 
     private void cdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cdKeyTyped
@@ -950,8 +947,6 @@ public class sales extends javax.swing.JFrame {
 
     private void cdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cdKeyReleased
        
-      
-
     }//GEN-LAST:event_cdKeyReleased
 
     private void cdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cdKeyPressed
